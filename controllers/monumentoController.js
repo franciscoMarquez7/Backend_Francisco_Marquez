@@ -44,17 +44,17 @@ class MonumentoController {
   }
 
   async deleteMonumento(req, res) {
-    const idmonumento = req.params.idmonumento;
+    const id = req.params.id;
     try {
       const numFilas = await Monumento.destroy({
         where: {
-          idmonumento: idmonumento,
+          id: id,
         },
       });
       if (numFilas == 0) {
         res
           .status(404)
-          .json(Respuesta.error(null, "No encontrado: " + idmonumento));
+          .json(Respuesta.error(null, "No encontrado: " + id));
       } else {
         res.status(204).send();
       }
@@ -72,9 +72,9 @@ class MonumentoController {
   }
 
   async getMonumentoById(req, res) {
-    const idmonumento = req.params.idmonumento;
+    const id = req.params.id;
     try {
-      const fila = await Monumento.findByPk(idmonumento);
+      const fila = await Monumento.findByPk(id);
       if (fila) {
         res.json(Respuesta.exito(fila, "Monumento recuperado"));
       } else {
@@ -97,7 +97,7 @@ class MonumentoController {
     const monumento = req.body;
     const idmonumento = req.params.idmonumento;
 
-    if (idmonumento != monumento.idmonumento) {
+    if (id != monumento.id) {
       return res
         .status(400)
         .json(Respuesta.error(null, "El id del monumento no coincide"));

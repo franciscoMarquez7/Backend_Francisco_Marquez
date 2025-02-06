@@ -4,10 +4,10 @@ const router = express.Router();
 const monumentoController = require('../controllers/monumentoController');
 
 router.get('/', monumentoController.getAllMonumento);
-router.get('/:idmonumento', monumentoController.getMonumentoById);
+router.get('/:id', monumentoController.getMonumentoById);
 router.post('/', monumentoController.createMonumento);
-router.delete('/:idmonumento', monumentoController.deleteMonumento);
-router.put('/:idmonumento', monumentoController.updateMonumento);
+router.delete('/:id', monumentoController.deleteMonumento);
+router.put('/:id', monumentoController.updateMonumento);
 
 
 module.exports = router;
